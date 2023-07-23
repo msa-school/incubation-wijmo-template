@@ -18,5 +18,5 @@ public class CreateCompanyCommand {
 
     @Id
     //@GeneratedValue(strategy=GenerationType.AUTO)
-    private LocalDate foundedDate;
+    private Date foundedDate;
 }

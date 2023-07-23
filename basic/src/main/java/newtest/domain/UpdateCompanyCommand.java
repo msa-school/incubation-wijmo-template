@@ -10,5 +10,5 @@ public class UpdateCompanyCommand {
 
     private String name;
     private String industry;
-    private LocalDate foundedDate;
+    private Date foundedDate;
 }

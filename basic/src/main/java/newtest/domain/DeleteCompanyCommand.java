@@ -8,5 +8,5 @@ import lombok.Data;
 @Data
 public class DeleteCompanyCommand {
 
-    private UUID companyId;
+    private String companyId;
 }

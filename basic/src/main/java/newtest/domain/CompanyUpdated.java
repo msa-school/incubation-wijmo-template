@@ -12,7 +12,7 @@ public class CompanyUpdated extends AbstractEvent {
     private UUID companyId;
     private String name;
     private String industry;
-    private LocalDate foundedDate;
+    private Date foundedDate;
 
     public CompanyUpdated(Company aggregate) {
         super(aggregate);

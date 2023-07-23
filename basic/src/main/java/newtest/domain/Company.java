@@ -18,7 +18,7 @@ public class Company {
 
     private String industry;
 
-    private LocalDate foundedDate;
+    private Date foundedDate;
 
     @PostPersist
     public void onPostPersist() {

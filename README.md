@@ -3,6 +3,22 @@
 ## Model
 www.msaez.io/#/storming/newtest
 
+
+```
+   http :8082/companies name="uengine" foundedDate="2017-03-15" industry="SW"
+   http :8082/companies name="google" foundedDate="2017-03-15" industry="SW"
+   http :8082/companies name="tesla" industry="manufacturing" 
+
+http :8082/companies/search/findByCompanyQuery name=="uengine" industry=="SW"
+http :8082/companies/search/findByCompanyQuery name=="uengine"
+http :8082/companies/search/findByCompanyQuery industry=="SW"
+
+   http :8082/companies/search/findByCompanyQuery industry=="SW" sort=="name"
+   http :8082/companies/search/findByCompanyQuery industry=="SW" sort=="name" page==0 size==1
+ http :8082/companies/search/findByCompanyQuery industry=="SW" sort=="name" page==1 size==1
+
+```
+
 ## Before Running Services
 ### Make sure there is a Kafka server running
 ```

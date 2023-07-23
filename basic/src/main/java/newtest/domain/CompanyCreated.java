@@ -9,10 +9,10 @@ import newtest.infra.AbstractEvent;
 @ToString
 public class CompanyCreated extends AbstractEvent {
 
-    private UUID companyId;
+    private String companyId;
     private String name;
     private String industry;
-    private LocalDate foundedDate;
+    private Date foundedDate;
 
     public CompanyCreated(Company aggregate) {
         super(aggregate);
