@@ -53,12 +53,12 @@
 
 <script>
 
-import BaseEntityUI from './BaseEntityUI'
+import BaseEntity from './base-ui/BaseEntity'
 
 
 export default {
     name: 'SalesOrder',
-    mixins:[BaseEntityUI],
+    mixins:[BaseEntity],
     components:{
     },
     data: () => ({

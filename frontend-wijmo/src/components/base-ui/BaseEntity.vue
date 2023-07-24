@@ -5,7 +5,7 @@
 <script>
     const axios = require('axios').default;
 
-    const BaseRepository = require('../domain/BaseRepository')
+    const BaseRepository = require('../../repository/BaseRepository')
 
     export default{
         name: 'base-entity-ui',

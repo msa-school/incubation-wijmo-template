@@ -5,11 +5,11 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 
-import CompanyManager from "./grid/CompanyGrid"
-import CompanyDetail from "./components/listers/CompanyDetail"
+import CompanyManager from "./components/ui/CompanyGrid"
+import CompanyDetail from "./components/ui/CompanyDetail"
 
-import SalesOrderManager from "./grid/SalesOrderGrid"
-import SalesOrderDetail from "./components/listers/SalesOrderDetail"
+import SalesOrderManager from "./components/ui/SalesOrderGrid"
+import SalesOrderDetail from "./components/ui/SalesOrderDetail"
 
 
 export default new Router({

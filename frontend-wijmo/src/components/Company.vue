@@ -59,18 +59,16 @@
 <script>
 
 
-import BaseEntityUI from './BaseEntityUI'
+import BaseEntity from './base-ui/BaseEntity'
 
 
 
 export default {
     name: 'Company',
-    mixins:[BaseEntityUI],
+    mixins:[BaseEntity],
     components:{
     },
-    props: {
-       
-    },
+    
     data: () => ({
         path: "companies"
     }),
@@ -80,10 +78,10 @@ export default {
     },
     methods: {
 
-        async updateCompany(params) {
+        async updateCompany(params) {    //TODO
             try {
                 if(!this.offline) {
-                    var temp = await this.repository.invokeHateoasLink('/company/{companyId}', params)
+                    var temp = await this.repository.invoke('/company/{companyId}', params)
                     for(var k in temp.data) {
                         this.value[k]=temp.data[k];
                     }
@@ -100,10 +98,10 @@ export default {
             }
         },
         openUpdateCompany() {
-            this.updateCompanyDiagram = true;
+            this.updateCompanyDiagram = true;   //TODO
         },
         closeUpdateCompany() {
-            this.updateCompanyDiagram = false;
+            this.updateCompanyDiagram = false;  //TODO
         },
     },
 }

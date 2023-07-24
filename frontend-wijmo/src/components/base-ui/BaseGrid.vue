@@ -5,7 +5,7 @@
 <script>
 const axios = require('axios').default;
 
-import BaseRepository from '../domain/BaseRepository';
+import BaseRepository from '../../repository/BaseRepository';
 
 import '@grapecity/wijmo.touch';
 import '@grapecity/wijmo.vue2.grid';
@@ -21,6 +21,8 @@ import * as wjcCore from "@grapecity/wijmo";
 export default {
     name : 'base-grid',
     data: () => ({
+        values: [],
+        newValue: {},
         flex: null,
         tick : true,
         openDialog : false,

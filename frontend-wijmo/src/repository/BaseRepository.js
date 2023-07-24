@@ -19,7 +19,7 @@ class BaseRepository{
          }
      }
 
-     async afterProcess(data){
+     async afterProcess(data){   //TODO
 
         let Promises = data.map(async (value) => {
             if(value == null) return
@@ -35,7 +35,11 @@ class BaseRepository{
      async find(query) {
          var temp = null;
          if(query!=null){
-            temp = await this.axios.get(this.axios.fixUrl(`/${query.apiPath}`), query.queryParameters);
+            let parameter = {
+                params: query.parameters
+            }
+
+            temp = await this.axios.get(this.axios.fixUrl(`/${query.apiPath}`), parameter);
          }else{
             temp = await this.axios.get(this.axios.fixUrl(`/${this.path}`));
          }

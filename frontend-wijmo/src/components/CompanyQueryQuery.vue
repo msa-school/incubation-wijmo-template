@@ -42,27 +42,15 @@
             },
         }),
         created() {
-            this.value.parameters.name = '';
-            this.value.parameters.industry = '';
         },
         watch: {
         },
         methods: {
             search() {
                 let search = null;
-                if(this.value.parameters.name == ''  && this.value.parameters.phone == ''  && this.value.parameters.test == ''  && this.value.parameters.test2 == '' ) {
-                    search = null;
-                }else{
-                    search = this.value;
-                }
+                search = this.value;
                 this.$emit('search', search);
-            },
-            close() {
-                this.$emit('closeDialog');
-            },
-            change() {
-                this.$emit('input', this.value);
-            },
+            }
         }
     }
 </script>

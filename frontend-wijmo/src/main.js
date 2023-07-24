@@ -4,7 +4,7 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import Managing from "./components";
 import router from './router';
-import ExcelExportButton from "./grid/export-btn.vue";
+import ExcelExportButton from "./components/base-ui/export-btn.vue";   //TODO
 Vue.config.productionTip = false;
 Vue.component("excel-export-button", ExcelExportButton);
 Vue.prototype.$Vue = Vue;

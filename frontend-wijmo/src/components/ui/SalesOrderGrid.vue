@@ -12,7 +12,6 @@
             </v-btn>
             <excel-export-button :exportService="this.exportService" :getFlex="getFlex" />
         </div>
-        <CompanyQueryQuery @search="search"></CompanyQueryQuery>
 
         <!-- the grid -->
         <wj-flex-grid
@@ -31,11 +30,11 @@
             style="margin-top:10px; max-height:65vh;"
             class="wj-felx-grid"
         >
-            <wj-flex-grid-filter :filterColumns="['name','industry','foundedDate',]" />
+            <wj-flex-grid-filter :filterColumns="['salesPerson','salesType','salesItem','companyId',]" />
             <wj-flex-grid-column binding="index" header="Number" width="2*" :isReadOnly="true" align="center" />
-            <wj-flex-grid-column binding="name" header="name" width="2*" :isReadOnly="true" align="center" />
-            <wj-flex-grid-column binding="industry" header="industry" width="2*" :isReadOnly="true" align="center" />
-            <wj-flex-grid-column binding="foundedDate" header="foundedDate" width="2*" :isReadOnly="true" align="center" />
+            <wj-flex-grid-column binding="salesPerson" header="salesPerson" width="2*" :isReadOnly="true" align="center" />
+            <wj-flex-grid-column binding="salesType" header="salesType" width="2*" :isReadOnly="true" align="center" />
+            <wj-flex-grid-column binding="companyId." header="company" width="2*" :isReadOnly="true" align="center" />
         </wj-flex-grid>
         <v-col>
             <v-dialog
@@ -51,7 +50,7 @@
                         class="elevation-0"
                         height="50px"
                     >
-                        <div style="color:white; font-size:17px; font-weight:700;">Company 등록</div>
+                        <div style="color:white; font-size:17px; font-weight:700;">SalesOrder 등록</div>
                         <v-spacer></v-spacer>
                         <v-icon
                             color="white"
@@ -61,10 +60,10 @@
                     </v-toolbar>
                     <v-card-text>
                     <div>
-                        <Company :offline="offline"
+                        <SalesOrder :offline="offline"
                             :isNew="!selectedItem"
                             :editMode="true"
-                            v-model="model"
+                            v-model="salesOrderModel"
                             @add="append"
                         />
                     </div>
@@ -101,21 +100,20 @@
 </template>
 
 <script>
-import CompanyQueryQuery from '../components/CompanyQueryQuery.vue';
-import Company from '../components/Company.vue'
-import BaseGrid from './BaseGrid'
+
+import BaseGrid from '../base-ui/BaseGrid.vue'
+import SalesOrder from '../SalesOrder.vue'
 
 export default {
-    name : 'company-grid',
+    name : 'salesOrder-grid',
     mixins:[BaseGrid],
     components:{
-        CompanyQueryQuery,
-        Company,
+        SalesOrder,
     },
     data: () => ({
-        path: 'companies',
+        path: 'salesOrders'
     }),
-    methods:{
-    }
+
 }
 </script>
+
