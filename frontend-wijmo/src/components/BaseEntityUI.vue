@@ -35,11 +35,7 @@
         },
         methods:{
 
-            async init() {
-                var me = this;
-                let lists = await me.search();
-                me.values = lists;
-            },
+        
             selectFile(){
                 if(this.editMode == false) {
                     return false;
@@ -72,11 +68,9 @@
                     var temp = null;
 
                     if(!this.offline) {
-                        if(this.isNew) {
-                            temp = await axios.post(axios.fixUrl('/companies'), this.value)
-                        } else {
-                            temp = await axios.put(axios.fixUrl(this.value._links.self.href), this.value)
-                        }
+                        
+                        temp = await this.repository.save(this.value, this.isNew)
+                        
                     }
                     if(this.value!=null) {
                         for(var k in temp.data) this.value[k]=temp.data[k];
@@ -108,7 +102,7 @@
             async delete(){
                 try {
                     if (!this.offline) {
-                        await axios.delete(axios.fixUrl(this.value._links.self.href))
+                        await this.repository.delete(this.value)
                     }
                     this.editMode = false;
                     this.isDeleted = true;
@@ -153,27 +147,6 @@
                     this.$emit('input', this.values);
                 }
             },
-            async getRealEntity(id){
-               try{
-                    let result = await this.repository.findById(id)
-                    result.data.id = id;
-                    return result.data;
-                }catch(e){
-                    return null;
-                }
-            },
-
-            async search(query) {
-                var me = this;
-                if(me.offline){
-                    if(!me.values) me.values = [];
-                    return;
-                } 
-
-                let temp = await this.repository.find(query)
-                me.values = temp.data;
-            },
-
 
         },
 

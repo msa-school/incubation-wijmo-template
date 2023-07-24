@@ -72,7 +72,7 @@ export default {
        
     },
     data: () => ({
-        
+        path: "companies"
     }),
     created(){
     },
