@@ -54,7 +54,7 @@
 <script>
 const axios = require('axios').default;
 
-import SalesOrderBase from '../components/SalesOrderBase.vue'
+import BaseEntityUI from './BaseEntityUI'
 
 import { RSocketClient } from 'rsocket-core';
 import RSocketWebSocketClient from 'rsocket-websocket-client';
@@ -64,7 +64,7 @@ import { IdentitySerializer, JsonSerializer } from "rsocket-core/build";
 
 export default {
     name: 'SalesOrder',
-    mixins:[SalesOrderBase],
+    mixins:[BaseEntityUI],
     components:{
     },
     props: {
