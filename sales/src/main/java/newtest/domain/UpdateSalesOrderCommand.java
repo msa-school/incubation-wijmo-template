@@ -12,7 +12,7 @@ public class UpdateSalesOrderCommand {
         private String salesPerson;
         private String companyId;
         private String salesType;
-        private List&lt;SalesItem&gt; salesItems;
+        private List<SalesItem> salesItems;
 
 
 }

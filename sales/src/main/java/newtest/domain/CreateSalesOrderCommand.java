@@ -20,7 +20,7 @@ public class CreateSalesOrderCommand {
         private String salesType;
         @Id
         //@GeneratedValue(strategy=GenerationType.AUTO)
-        private List&lt;SalesItem&gt; salesItems;
+        private List<SalesItem> salesItems;
 
 
 }

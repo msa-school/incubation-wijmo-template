@@ -14,7 +14,8 @@ import newtest.domain.SalesOrderDeleted;
 public class SalesOrder {
 
     @Id
-    private String id;
+    @GeneratedValue
+    private Long id;
 
     private String salesPerson;
 
