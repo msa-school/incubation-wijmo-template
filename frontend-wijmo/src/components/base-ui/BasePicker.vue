@@ -2,8 +2,8 @@
     <div>
         <v-select
             :items="list"
-            item-text="name"
-            item-value="name"
+            :item-text="nameField"
+            :item-value="idField"
             :label="label"
             return-object
             v-model="selected"
@@ -23,7 +23,9 @@ import BaseRepository from '../../repository/BaseRepository';
             value: [String, Object, Array, Number, Boolean],
             editMode: Boolean,
             label: String,
-            path: String
+            path: String,
+            nameField: String,
+            idField: String
         },
         data: () => ({
             list: [],
@@ -39,9 +41,8 @@ import BaseRepository from '../../repository/BaseRepository';
             me.list = temp
 
             if(me.value && typeof me.value == "object" && Object.values(me.value)[0]) {
-                var idKey = 'name'
                 
-                var id = me.value[idKey];
+                var id = me.value[me.idField];
                 var tmpValue = await this.repository.findById(id)
                 if(tmpValue.data) {
                     var val = tmpValue.data
@@ -55,7 +56,7 @@ import BaseRepository from '../../repository/BaseRepository';
                 this.referenceValue = val;
                 if (val) {
                     var uriParts = val._links.self.href.split('/');
-                    var obj = Number(uriParts.pop());
+                    var obj = uriParts.pop();
                     
                     
                     this.$emit('input', obj);

@@ -4,6 +4,12 @@
             <v-row cols="12">
                 <v-col cols="6">
                     <div style="display:flex;">
+                        <div class="label-title">Code</div>
+                        <String label="입력하세요." v-model="value.code" :editMode="editMode"/>
+                    </div>
+                </v-col>
+                <v-col cols="6">
+                    <div style="display:flex;">
                         <div class="label-title">Name</div>
                         <String label="입력하세요." v-model="value.name" :editMode="editMode"/>
                     </div>
@@ -77,32 +83,6 @@ export default {
     computed:{
     },
     methods: {
-
-        async updateCompany(params) {    //TODO
-            try {
-                if(!this.offline) {
-                    var temp = await this.repository.invoke('/company/{companyId}', params)
-                    for(var k in temp.data) {
-                        this.value[k]=temp.data[k];
-                    }
-                }
-                this.editMode = false;
-                this.closeUpdateCompany();
-            } catch(e) {
-                this.snackbar.status = true
-                if(e.response && e.response.data.message) {
-                    this.snackbar.text = e.response.data.message
-                } else {
-                    this.snackbar.text = e
-                }
-            }
-        },
-        openUpdateCompany() {
-            this.updateCompanyDiagram = true;   //TODO
-        },
-        closeUpdateCompany() {
-            this.updateCompanyDiagram = false;  //TODO
-        },
     },
 }
 </script>

@@ -30,6 +30,7 @@
             updateCompanyDiagram: false,
         }),
         created(){
+            if(this.value==null) this.value = {}
 
             this.repository = new BaseRepository(axios, this.path)
         },

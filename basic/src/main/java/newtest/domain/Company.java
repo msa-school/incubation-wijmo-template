@@ -14,6 +14,8 @@ import newtest.domain.CompanyDeleted;
 public class Company {
 
     @Id
+    private String code;
+
     private String name;
 
     private String industry;
