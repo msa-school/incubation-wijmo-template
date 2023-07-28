@@ -1,11 +1,15 @@
 <template>
-    <div>
-        <BasePicker v-model="value" idField="code" nameField="name" path="companies" @selected="pick" :editMode="editMode" />
+    <BasePicker v-if="editMode" v-model="value" idField="code" nameField="name" path="companies" @selected="pick" :editMode="editMode" />
+    <div v-else>
+       <span>{{ value.name }}</span>
     </div>
 
 </template>
 
 <script>
+    const axios = require('axios').default;
+    import BaseRepository from '../repository/BaseRepository';
+
     export default {
         name: 'CompanyId',
         components:{},
@@ -18,11 +22,11 @@
             label: String,
         },
         data: () => ({
+            repository: null
         }),
-        watch: {
-            value(val) {
-                this.$emit('input', val);
-            }
+        async created(){
+            this.repository = new BaseRepository(axios, "companies")
+            this.value = await this.repository.findById(this.value.id)
         },
 
         methods: {
