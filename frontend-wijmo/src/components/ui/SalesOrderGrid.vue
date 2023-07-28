@@ -34,7 +34,13 @@
             <wj-flex-grid-column binding="index" header="Number" width="2*" :isReadOnly="true" align="center" />
             <wj-flex-grid-column binding="salesPerson" header="salesPerson" width="2*" :isReadOnly="true" align="center" />
             <wj-flex-grid-column binding="salesType" header="salesType" width="2*" :isReadOnly="true" align="center" />
-            <wj-flex-grid-column binding="companyId.name" header="company" width="2*" :isReadOnly="true" align="center" />
+            <wj-flex-grid-column binding="companyId.name" header="company" width="2*" :isReadOnly="true" align="center">
+                <wj-flex-grid-cell-template cellType="Cell" v-slot="cell">
+                    <span>
+                        {{companyId.id}}
+                    </span>
+                </wj-flex-grid-cell-template>
+            </wj-flex-grid-column>
         </wj-flex-grid>
         <v-col>
             <v-dialog
