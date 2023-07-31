@@ -7,8 +7,11 @@
                         <v-list-item-title>SalesItem</v-list-item-title>
                     </v-list-item-content>
                 </template>
+
+            <SalesItemsDetailGrid v-if="selectedRow && selectedRow.salesItem" v-model="selectedRow.salesItem"/>
+
             
-                <v-list-item v-for="(item, idx) in value" :key="idx">
+                <!-- <v-list-item v-for="(item, idx) in value" :key="idx">
                     <v-list-item-content>
                         <v-list-item-title>Message {{idx+1}}</v-list-item-title>
                         <v-list-item-subtitle>
@@ -22,7 +25,7 @@
                             <v-icon small color="grey lighten-1">mdi-delete</v-icon>
                         </v-btn>
                     </v-list-item-action>
-                </v-list-item>
+                </v-list-item> -->
             </v-list-group>
         </v-list>
 
@@ -45,11 +48,13 @@
 
 <script>
     import SalesItem from '../SalesItem.vue';
+    import SalesItemsDetailGrid from './SalesItemsDetailGrid.vue'
 
     export default {
         name: 'SalesItemManager',
         components: {
-            SalesItem
+            SalesItem,
+            SalesItemsDetailGrid
         },
         props: {
             value: [Object, String, Number, Boolean, Array],
@@ -59,7 +64,8 @@
         data: () => ({
             newValue: {},
             tick : true,
-            isExpansion: false,
+            isExpansion: true,
+            selectedRow: [],
         }),
         async created() {
             if (!this.value) {

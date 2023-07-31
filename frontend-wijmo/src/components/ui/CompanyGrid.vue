@@ -35,7 +35,7 @@
             <wj-flex-grid-column binding="index" header="Number" width="2*" :isReadOnly="true" align="center" />
             <wj-flex-grid-column binding="name" header="name" width="2*" :isReadOnly="true" align="center" />
             <wj-flex-grid-column binding="industry" header="industry" width="2*" :isReadOnly="true" align="center" />
-            <wj-flex-grid-column binding="foundedDate" header="foundedDate" width="2*" :isReadOnly="true" align="center" />
+            <wj-flex-grid-column  binding="foundedDate" header="foundedDate" width="2*" :isReadOnly="true" align="center" />
         </wj-flex-grid>
         <v-col>
             <v-dialog
@@ -60,14 +60,12 @@
                         >mdi-close</v-icon>
                     </v-toolbar>
                     <v-card-text>
-                    <div>
                         <Company :offline="offline"
-                            :isNew="!selectedItem"
+                            :isNew="!itemToEdit"
                             :editMode="true"
-                            v-model="model"
+                            v-model="itemToEdit"
                             @add="append"
                         />
-                    </div>
                     </v-card-text>
                     <v-card-actions class="justify-end">
                     
@@ -104,6 +102,7 @@
 import CompanyQueryQuery from '../CompanyQueryQuery';
 import Company from '../Company'
 import BaseGrid from '../base-ui/BaseGrid'
+import { ExportService } from '../base-ui/export'
 
 export default {
     name : 'company-grid',
@@ -114,6 +113,7 @@ export default {
     },
     data: () => ({
         path: 'companies',
+        exportService: new ExportService(),
     }),
     methods:{
     }

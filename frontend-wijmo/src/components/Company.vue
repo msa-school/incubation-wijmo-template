@@ -1,32 +1,16 @@
 <template>
     <div>
         <div>
-            <v-row cols="12">
-                <v-col cols="6">
-                    <div style="display:flex;">
-                        <div class="label-title">Code</div>
-                        <String label="입력하세요." v-model="value.code" :editMode="editMode"/>
-                    </div>
-                </v-col>
-                <v-col cols="6">
-                    <div style="display:flex;">
-                        <div class="label-title">Name</div>
-                        <String label="입력하세요." v-model="value.name" :editMode="editMode"/>
-                    </div>
-                </v-col>
-                <v-col cols="6">
-                    <div style="display:flex;">
-                        <div class="label-title">Industry</div>
-                        <String label="입력하세요." v-model="value.industry" :editMode="editMode"/>
-                    </div>
-                </v-col>
-                <v-col cols="6">
-                    <div style="display:flex;">
-                        <div class="label-title">FoundedDate</div>
-                        <Date label="입력하세요." v-model="value.foundedDate" :editMode="editMode"/>
-                    </div>
-                </v-col>
-            </v-row>
+            <v-col>
+                <div class="label-title">Code</div>
+                <String label="입력하세요." v-model="value.code" :editMode="editMode"/>
+                <div class="label-title">Name</div>
+                <String label="입력하세요." v-model="value.name" :editMode="editMode"/>
+                <div class="label-title">Industry</div>
+                <String label="입력하세요." v-model="value.industry" :editMode="editMode"/>
+                <div class="label-title">FoundedDate</div>
+                <Date label="입력하세요." v-model="value.foundedDate" :editMode="editMode"/>
+            </v-col>
         </div>
 
         <div>

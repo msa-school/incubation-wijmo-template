@@ -4,21 +4,12 @@
         <div class="detail-title">
         SalesItem
         </div>
-
-        <v-row style="padding-right:15px;">
-            <v-col cols="6">
-                <div style="display:flex;">
-                    <div class="label-title">ProductId</div>
-                    <String label="입력하세요." v-model="value.productId" :editMode="editMode"/>
-                </div>
+            <v-col>
+                <div class="label-title">ProductId</div>
+                <String label="입력하세요." v-model="value.productId" :editMode="editMode"/>
+                <Number offline label="Quantity" v-model="value.quantity" :editMode="editMode" @change="change"/>
+                <Number offline label="Price" v-model="value.price" :editMode="editMode" @change="change"/>
             </v-col>
-            <v-col class="detail-picker" cols="6">
-                <int offline label="Quantity" v-model="value.quantity" :editMode="editMode" @change="change"/>
-            </v-col>
-            <v-col class="detail-picker" cols="6">
-                <double offline label="Price" v-model="value.price" :editMode="editMode" @change="change"/>
-            </v-col>
-        </v-row>
 
         <v-card-actions v-if="inList">
             <slot name="actions"></slot>
@@ -27,9 +18,10 @@
 </template>
 
 <script>
+import Number from "./primitives/Number.vue";
     export default {
         name: 'SalesItem',
-        components:{},
+        components:{ Number },
         props: {
             value: [Object, String, Number, Boolean, Array],
             editMode: Boolean,

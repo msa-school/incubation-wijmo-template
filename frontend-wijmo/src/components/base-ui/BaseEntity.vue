@@ -35,8 +35,6 @@
             this.repository = new BaseRepository(axios, this.path)
         },
         methods:{
-
-        
             selectFile(){
                 if(this.editMode == false) {
                     return false;

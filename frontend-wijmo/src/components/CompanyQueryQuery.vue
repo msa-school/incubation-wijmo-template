@@ -17,7 +17,6 @@
                 <v-col>
                     <v-btn class="gs-query-search-btn"
                         @click="search"
-                        flat
                         small
                         color="primary"
                     >

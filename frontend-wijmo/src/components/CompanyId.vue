@@ -3,12 +3,11 @@
     <div v-else>
        <span>{{ value.name }}</span>
     </div>
-
 </template>
 
 <script>
-    const axios = require('axios').default;
-    import BaseRepository from '../repository/BaseRepository';
+const axios = require('axios').default;
+import BaseRepository from '../repository/BaseRepository';
 
     export default {
         name: 'CompanyId',

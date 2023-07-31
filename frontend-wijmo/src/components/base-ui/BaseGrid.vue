@@ -3,9 +3,7 @@
 </template>
 
 <script>
-const axios = require('axios').default;
-
-import BaseRepository from '../../repository/BaseRepository';
+import BaseEntity from './BaseEntity.vue';
 
 import '@grapecity/wijmo.touch';
 import '@grapecity/wijmo.vue2.grid';
@@ -26,28 +24,22 @@ export default {
         flex: null,
         tick : true,
         openDialog : false,
-        selectedItem: null,
-        selectedGrid: null,
+        itemToEdit: null,
+        selectedRow: null,
         path: 'path',
-        repository: null
+        repository: null,
+        snackbar: {
+            status: false,
+            text: ''
+        },
     }),
+    mixins:[
+        BaseEntity
+    ],
     computed: {
-        model: {
-            get() {
-                return this.selectedItem || this.newValue;
-            },
-            set(value) {
-                if (this.selectedItem) {
-                    this.selectedItem = value;
-                } else {
-                    this.newValue = value;
-                }
-            }
-        }
     },
     async created(){
-        this.repository = new BaseRepository(axios, this.path)
-
+        
         var me = this;
         let lists = await me.search();
         me.values = lists;
@@ -64,28 +56,20 @@ export default {
             this.$refs.flexGrid = flexGrid;
             let sd = new wjcCore.SortDescription("country", true);
             flexGrid.collectionView.sortDescriptions.push(sd);
-            flexGrid.collectionView.currentChanged.addHandler(
-                this._updateCurrentInfo.bind(this)
-            );
-            this._updateCurrentInfo();
         },
         onSelectionChanged(s) {
             let selectedItem = s.collectionView.currentItem;
             if (selectedItem) {
-                this.selectedGrid = selectedItem;
-                this.selectedGrid = this.selectedGrid.map((user, index) => {
-                    return { ...user, index: index };
-                });
-
-            } else {
-                this.selectedGrid = [];
+                this.selectedRow = selectedItem;
             }
             this.$nextTick(() => {
-                this.$refs.flexGridDetails.refresh();
+                if (this.$refs.flexGridDetails) {
+                    this.$refs.flexGridDetails.refresh();
+                }
             });
         },
         addNewRow() {
-            this.selectedItem = null;
+            this.itemToEdit = null;
             this.openDialog = true;
         },
         editSelectedRow() {
@@ -93,10 +77,13 @@ export default {
             const view = flexGrid.collectionView;
 
             if (view.currentItem) {
-                this.selectedItem = null;
-                this.selectedItem = JSON.parse(JSON.stringify(view.currentItem));
-                this.edit(this.selectedItem);
-                this.openDialog = true;
+                this.itemToEdit = JSON.parse(JSON.stringify(view.currentItem));
+                this.edit(this.itemToEdit);
+                this.$set(this, 'selectedRow', this.itemToEdit);
+
+                this.$nextTick(() => {
+                    this.openDialog = true;
+                });
             }
         },
         async deleteSelectedRows() {

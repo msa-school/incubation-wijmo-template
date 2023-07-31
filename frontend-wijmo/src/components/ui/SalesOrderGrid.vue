@@ -30,17 +30,19 @@
             style="margin-top:10px; max-height:65vh;"
             class="wj-felx-grid"
         >
-            <wj-flex-grid-filter :filterColumns="['salesPerson','salesType','salesItem','companyId',]" />
-            <wj-flex-grid-column binding="index" header="Number" width="2*" :isReadOnly="true" align="center" />
+            <wj-flex-grid-filter :filterColumns="['RowHeader', 'salesPerson','salesType','salesItem','companyId',]" />
+            
+            <wj-flex-grid-cell-template cellType="RowHeader" v-slot="cell">{{cell.row.index + 1}}</wj-flex-grid-cell-template>
             <wj-flex-grid-column binding="salesPerson" header="salesPerson" width="2*" :isReadOnly="true" align="center" />
             <wj-flex-grid-column binding="salesType" header="salesType" width="2*" :isReadOnly="true" align="center" />
+
             <wj-flex-grid-column binding="companyId" header="company" width="2*" :isReadOnly="true" align="center">
                 <wj-flex-grid-cell-template cellType="Cell" v-slot="cell">   
                     <CompanyId :editMode="false" v-model="cell.item.companyId"></CompanyId>
                 </wj-flex-grid-cell-template>
-
             </wj-flex-grid-column>
         </wj-flex-grid>
+        <SalesItemsDetailGrid v-if="selectedRow" v-model="selectedRow.salesItem"/>
         <v-col>
             <v-dialog
                 v-model="openDialog"
@@ -64,14 +66,12 @@
                         >mdi-close</v-icon>
                     </v-toolbar>
                     <v-card-text>
-                    <div>
-                        <SalesOrder :offline="offline"
-                            :isNew="!selectedItem"
-                            :editMode="true"
-                            v-model="salesOrderModel"
-                            @add="append"
-                        />
-                    </div>
+                    <SalesOrder :offline="offline"
+                        :isNew="!itemToEdit"
+                        :editMode="true"
+                        v-model="itemToEdit"
+                        @add="append"
+                    />
                     </v-card-text>
                     <v-card-actions class="justify-end">
                     
@@ -106,17 +106,21 @@
 
 <script>
 
-import BaseGrid from '../base-ui/BaseGrid.vue'
+import BaseGrid from '../base-ui/BaseGrid'
 import SalesOrder from '../SalesOrder.vue'
+import SalesItemsDetailGrid from './SalesItemsDetailGrid.vue'
+import { ExportService } from '../base-ui/export'
 
 export default {
     name : 'salesOrder-grid',
     mixins:[BaseGrid],
     components:{
-        SalesOrder,
-    },
+    SalesOrder,
+    SalesItemsDetailGrid
+},
     data: () => ({
-        path: 'salesOrders'
+        path: 'salesOrders',
+        exportService: new ExportService(),
     }),
 
 }

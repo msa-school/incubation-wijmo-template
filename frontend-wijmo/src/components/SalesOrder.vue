@@ -1,31 +1,10 @@
 <template>
     <div>
-        <div>
-            <v-row cols="12">
-                <v-col cols="6">
-                    <div style="display:flex;">
-                        <div class="label-title">SalesPerson</div>
-                        <String label="입력하세요." v-model="value.salesPerson" :editMode="editMode"/>
-                    </div>
-                </v-col>
-            </v-row>
-        </div>
-
-        <div>
-            <v-row cols="12">
-                <v-col cols="6" class="picker">
-                    <SalesType offline label="SalesType" v-model="value.salesType" :editMode="editMode" @change="change"/>
-                </v-col>
-                <v-col cols="6" class="picker">
-                    <CompanyId offline label="CompanyId" v-model="value.companyId" :editMode="editMode" @change="change"/>
-                </v-col>
-            </v-row>
-        </div>
-
-        <div>
-            <SalesItemManager offline label="SalesItem" v-model="value.salesItem" :editMode="editMode" @change="change"/>
-        </div>
-
+        <div class="label-title">SalesPerson</div>
+        <String label="입력하세요." v-model="value.salesPerson" :editMode="editMode"/>
+        <SalesType offline label="SalesType" v-model="value.salesType" :editMode="editMode" @change="change"/>
+        <CompanyId offline label="CompanyId" v-model="value.companyId" :editMode="editMode" @change="change"/>
+        <SalesItemManager offline label="SalesItem" v-model="value.salesItem" :editMode="editMode" @change="change"/>
         <v-divider class="border-opacity-100 my-divider"></v-divider>
         <v-layout row justify-end>
             <v-btn

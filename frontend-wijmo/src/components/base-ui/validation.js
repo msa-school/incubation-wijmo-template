@@ -76,18 +76,10 @@ export class MinDateValidator extends MinValueValidator {
   constructor(minValue, message = '{0} can\'t be less than {1}', format = 'MM/dd/yyyy') {
       super(minValue, message, format);
   }
-
-  _formatValue(value) {
-      return wjcCore.Globalize.formatDate(value, this.format);
-  }
 }
 
 export class MaxDateValidator extends MaxValueValidator {
     constructor(maxValue, message = '{0} can\'t be greater than {1}', format = 'MM/dd/yyyy') {
         super(maxValue, message, format);
-    }
-
-    _formatValue(value) {
-        return wjcCore.Globalize.formatDate(value, this.format);
     }
 }

@@ -59,7 +59,7 @@ class BaseRepository{
     }
 
     async delete(entity){
-        await this.this.axios.delete(this.axios.fixUrl(entity._links.self.href))
+        await this.axios.delete(this.axios.fixUrl(entity._links.self.href))
     }
 
     async invoke(entity, link, params) {
