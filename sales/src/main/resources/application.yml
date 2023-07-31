@@ -8,8 +8,14 @@ spring:
 spring:
   profiles: default
   jpa:
+    generate-ddl: true
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create
     properties:
       hibernate:
+        ddl-auto: create-drop
         show_sql: true
         format_sql: true
         implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
