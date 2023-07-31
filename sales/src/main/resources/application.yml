@@ -3,8 +3,16 @@ server:
 spring:
   application:
     name: sales
----
 
+# Keycloak configuration
+keycloak:
+  auth-server-url: http://localhost:8080
+  realm: my_realm
+  resource: my_client
+  credentials:
+    secret: HKFKYP7kb8OMldAgfvnk27FhRPOv8Y7H
+
+---
 spring:
   profiles: default
   jpa:
