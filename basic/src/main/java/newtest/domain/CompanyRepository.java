@@ -18,7 +18,7 @@ public interface CompanyRepository
 
         @Query(value = "select company " +
         "from Company company " +
-        "where (:name is null or company.name = :name) and (:industry is null or company.industry = :industry)")
+        "where (:name is null or company.name like %:name%) and (:industry is null or company.industry like %:industry%)")
        List<Company> findByCompanyQuery(String name, String industry, Pageable pageable);
 
 }

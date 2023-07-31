@@ -8,9 +8,7 @@
                     </v-list-item-content>
                 </template>
 
-            <SalesItemsDetailGrid v-if="selectedRow && selectedRow.salesItem" v-model="selectedRow.salesItem"/>
-
-            
+                <SalesItemsDetailGrid v-if="selectedRow" v-model="selectedRow.salesItem"/>
                 <!-- <v-list-item v-for="(item, idx) in value" :key="idx">
                     <v-list-item-content>
                         <v-list-item-title>Message {{idx+1}}</v-list-item-title>
@@ -48,10 +46,12 @@
 
 <script>
     import SalesItem from '../SalesItem.vue';
-    import SalesItemsDetailGrid from './SalesItemsDetailGrid.vue'
+    import SalesItemsDetailGrid from './SalesItemsDetailGrid.vue';
+    import BaseGrid from '../base-ui/BaseGrid';
 
     export default {
         name: 'SalesItemManager',
+        mixins:[BaseGrid],
         components: {
             SalesItem,
             SalesItemsDetailGrid

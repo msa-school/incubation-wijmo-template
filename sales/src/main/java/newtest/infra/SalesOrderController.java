@@ -24,7 +24,7 @@ public class SalesOrderController {
         produces = "application/json;charset=UTF-8"
     )
     public SalesOrder updateSalesOrder(
-        @PathVariable(value = "id") String id,
+        @PathVariable(value = "id") Long id,
         @RequestBody UpdateSalesOrderCommand updateSalesOrderCommand,
         HttpServletRequest request,
         HttpServletResponse response

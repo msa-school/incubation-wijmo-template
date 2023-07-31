@@ -1,5 +1,6 @@
 <template>
     <div>
+        <v-text-field v-model="searchKeyword"></v-text-field>
         <v-select
             :items="list"
             :item-text="nameField"
@@ -17,6 +18,8 @@
 import BaseRepository from '../../repository/BaseRepository';
     const axios = require('axios').default;
 
+    var _ = require('lodash');
+
     export default {
         name: 'BasePicker',
         props: {
@@ -25,20 +28,20 @@ import BaseRepository from '../../repository/BaseRepository';
             label: String,
             path: String,
             nameField: String,
-            idField: String
+            idField: String,
+            searchApiPath: String,
+            searchParameterName: String,
         },
         data: () => ({
             list: [],
             selected: null,
             referenceValue: null,
-            repository: null
+            repository: null,
+            searchKeyword:null,
         }),
         async created() {
             var me = this;
             this.repository = new BaseRepository(axios, this.path)
-
-            var temp = await this.repository.find()
-            me.list = temp
 
             if(me.value && typeof me.value == "object" && Object.values(me.value)[0]) {
                 
@@ -50,6 +53,24 @@ import BaseRepository from '../../repository/BaseRepository';
                     me.referenceValue = val
                 }
             }
+        },
+        watch:{
+            "searchKeyword": _.debounce(
+                async function (newVal) {
+                    // edit Mode false -> true 일시 동기화.
+                    // 500ms 이유: 값 세팅이 300ms.
+                    if(newVal){
+                        var me = this;
+                        let query = {
+                            apiPath : me.searchApiPath, 
+                            parameters:{}
+                        }
+                        query.parameters[me.searchParameterName] = me.searchKeyword
+                        var temp = await this.repository.find(query)
+                        me.list = temp
+                    }
+                }, 500
+            ),
         },
         methods: {
             select(val) {
