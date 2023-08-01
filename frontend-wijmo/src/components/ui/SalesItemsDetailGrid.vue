@@ -27,7 +27,6 @@
             inList
             v-model="itemToEdit"
             @add="append"
-            ref="salesItem"
         >
             <slot name="actions"></slot>
         </SalesItem>
