@@ -19,7 +19,7 @@ public class CompanyController {
     CompanyRepository companyRepository;
 
     @RequestMapping(
-        value = "companies/{id}//company/{companyId}",
+        value = "companies/{id}/company/{companyId}",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )

@@ -16,7 +16,7 @@ public class CompanyHateoasProcessor
             Link
                 .of(
                     model.getRequiredLink("self").getHref() +
-                    "//company/{companyId}"
+                    "/company/{companyId}"
                 )
                 .withRel("/company/{companyId}")
         );

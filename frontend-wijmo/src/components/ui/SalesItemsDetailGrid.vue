@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <wj-flex-grid
         ref="flexGridDetails"
         :autoGenerateColumns="false"

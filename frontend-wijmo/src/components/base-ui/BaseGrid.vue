@@ -37,6 +37,14 @@ export default {
     ],
     computed: {
     },
+    watch: {
+        value: {
+            handler(newValue, oldValue) {
+                console.log('value changed from', oldValue, 'to', newValue);
+            },
+            deep: true
+        }
+    },
     async created(){
         
         var me = this;
