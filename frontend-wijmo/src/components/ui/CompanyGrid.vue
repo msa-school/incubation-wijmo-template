@@ -25,7 +25,7 @@
             :showMarquee="true"
             :selectionMode="'MultiRange'"
             :validateEdits="false"
-            :itemsSource="values"
+            :itemsSource="value"
             :initialized="flexInitialized"
             :selectionChanged="onSelectionChanged"
             style="margin-top:10px; max-height:65vh;"

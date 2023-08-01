@@ -1,5 +1,7 @@
 <template>
-    <wj-flex-grid
+    <div>
+
+        <wj-flex-grid
         ref="flexGridDetails"
         :autoGenerateColumns="false"
         :allowAddNew="false"
@@ -18,25 +20,31 @@
         <wj-flex-grid-column binding="quantity" header="quantity" width="2*" :isReadOnly="true" align="center" />
         <wj-flex-grid-column binding="price" header="price" width="2*" :isReadOnly="true" align="center" />
     </wj-flex-grid>
+
+        <SalesItem :offline="offline"
+            :isNew="!itemToEdit"
+            :editMode="editMode"
+            inList
+            v-model="itemToEdit"
+            @add="append"
+        >
+            <slot name="actions"></slot>
+        </SalesItem>
+        <v-btn @click="append">추가</v-btn>
+    </div>
 </template>
 
 <script>
-import '@grapecity/wijmo.touch';
-import '@grapecity/wijmo.vue2.grid';
+
+import BaseDetailGrid from '../base-ui/BaseGrid';
+import SalesItem from '../SalesItem.vue'
 
 export default {
     name: 'SalesItemsDetailGrid',
-    props: {
-        value: {
-            type: Array,
-            required: true
-        }
-    },
-    methods: {
-        flexDetailsInitialized(flexGridDetails) {
-            this.$refs.flexGridDetails = flexGridDetails;
-        },
-    },
+    mixins: [BaseDetailGrid],
+    components: [
+        SalesItem
+    ]
 }
 </script>
 

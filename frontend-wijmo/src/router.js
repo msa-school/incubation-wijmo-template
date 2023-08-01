@@ -6,10 +6,8 @@ Vue.use(Router);
 
 
 import CompanyManager from "./components/ui/CompanyGrid"
-import CompanyDetail from "./components/ui/CompanyDetail"
 
 import SalesOrderManager from "./components/ui/SalesOrderGrid"
-import SalesOrderDetail from "./components/ui/SalesOrderDetail"
 
 
 export default new Router({
@@ -21,23 +19,13 @@ export default new Router({
                 name: 'CompanyManager',
                 component: CompanyManager
             },
-            {
-                path: '/companies/:id',
-                name: 'CompanyDetail',
-                component: CompanyDetail
-            },
+
 
             {
                 path: '/salesOrders',
                 name: 'SalesOrderManager',
                 component: SalesOrderManager
             },
-            {
-                path: '/salesOrders/:id',
-                name: 'SalesOrderDetail',
-                component: SalesOrderDetail
-            },
-
 
 
     ]

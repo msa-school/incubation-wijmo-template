@@ -24,7 +24,7 @@
             :showMarquee="true"
             :selectionMode="'MultiRange'"
             :validateEdits="false"
-            :itemsSource="values"
+            :itemsSource="value"
             :initialized="flexInitialized"
             :selectionChanged="onSelectionChanged"
             style="margin-top:10px; max-height:65vh;"
@@ -42,7 +42,7 @@
                 </wj-flex-grid-cell-template>
             </wj-flex-grid-column>
         </wj-flex-grid>
-        <SalesItemsDetailGrid v-if="selectedRow" v-model="selectedRow.salesItem"/>
+        <SalesItemsDetailGrid offline v-if="selectedRow" v-model="selectedRow.salesItem"/>
         <v-col>
             <v-dialog
                 v-model="openDialog"

@@ -14,6 +14,7 @@
             value: [Object, String, Number, Boolean, Array],
             editMode: Boolean,
             isNew: Boolean,
+            inList: Boolean,
         },
         computed: {},
         data: () => ({
@@ -123,28 +124,6 @@
             closeDialog(){
                 this.openDialog = false
                 location.reload()
-            },
-            append(value){
-                this.tick = false
-                this.newValue = {}
-                this.values.push(value)
-                this.$emit('input', this.values);
-                this.$nextTick(function(){
-                    this.tick=true
-                })
-            },
-            remove(value){
-                var where = -1;
-                for(var i=0; i<this.values.length; i++){
-                    if(this.values[i]._links.self.href == value._links.self.href){
-                        where = i;
-                        break;
-                    }
-                }
-                if(where > -1){
-                    this.values.splice(i, 1);
-                    this.$emit('input', this.values);
-                }
             },
 
         },

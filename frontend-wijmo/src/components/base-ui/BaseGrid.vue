@@ -19,7 +19,6 @@ import * as wjcCore from "@grapecity/wijmo";
 export default {
     name : 'base-grid',
     data: () => ({
-        values: [],
         newValue: {},
         flex: null,
         tick : true,
@@ -42,7 +41,7 @@ export default {
         
         var me = this;
         let lists = await me.search();
-        me.values = lists;
+        me.value = lists;
 
         this.dataService = new DataService();
         this.exportService = new ExportService();
@@ -88,17 +87,19 @@ export default {
         },
         async deleteSelectedRows() {
             try {
-                if (!this.offline) {
-                    const flexGrid = this.$refs.flexGrid;
-                    const view = flexGrid.collectionView;
-                    
-                    if (view.currentItem) {
+                
+                const flexGrid = this.$refs.flexGrid;
+                const view = flexGrid.collectionView;
+                
+                if (view.currentItem) {
+                    if (!this.offline) {
                         await this.repository.delete(view.currentItem)
-                        
-                        view.remove(view.currentItem);
-                        this.values = view.sourceCollection;
                     }
+                    
+                    view.remove(view.currentItem);
+                    this.value = view.sourceCollection;
                 }
+                
             } catch(e) {
                 this.snackbar.status = true
                 if(e.response && e.response.data.message) {
@@ -149,17 +150,45 @@ export default {
             return '';
         },
 
+        append(value){
+            this.tick = false
+            this.newValue = {}
+            this.value.push(value)
+            this.$emit('input', this.value);
+            this.$nextTick(function(){
+                this.tick=true
+            })
+        },
+        remove(value){
+            var where = -1;
+            for(var i=0; i<this.value.length; i++){
+                if(this.value[i]._links.self.href == value._links.self.href){
+                    where = i;
+                    break;
+                }
+            }
+            if(where > -1){
+                this.value.splice(i, 1);
+                this.$emit('input', this.value);
+            }
+        },
+
+
         async search(query) {
             var me = this;
             if(me.offline){
-                if(!me.values) me.values = [];
+                if(!me.value) me.value = [];
                 return;
             } 
             var temp = null;
-            temp = await this.repository.find(query)
-            me.values = temp
 
-            return me.values;
+            if(!me.offline){
+                temp = await this.repository.find(query)
+
+                me.value = temp
+            }
+
+            return me.value;
         },
     },
     filters: {

@@ -4,7 +4,7 @@
         <String label="입력하세요." v-model="value.salesPerson" :editMode="editMode"/>
         <SalesType offline label="SalesType" v-model="value.salesType" :editMode="editMode" @change="change"/>
         <CompanyId offline label="CompanyId" v-model="value.companyId" :editMode="editMode" @change="change"/>
-        <SalesItemManager offline label="SalesItem" v-model="value.salesItem" :editMode="editMode" @change="change"/>
+        <SalesItemsDetailGrid offline label="SalesItem" v-model="value.salesItem" :editMode="editMode" @change="change"/>
         <v-divider class="border-opacity-100 my-divider"></v-divider>
         <v-layout row justify-end>
             <v-btn
