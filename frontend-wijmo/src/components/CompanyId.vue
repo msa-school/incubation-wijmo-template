@@ -2,7 +2,7 @@
     <div>
         <BasePicker v-if="editMode" v-model="value" searchApiPath="companies/search/findByCompanyQuery" searchParameterName="name" idField="code" nameField="name" path="companies" @selected="pick" :editMode="editMode" />
         <div v-else>
-            <span>{{ value.name }}</span>
+            <span>{{ value && value.name ? value.name : '' }}</span>
         </div>
     </div>
 </template>
@@ -30,7 +30,9 @@ import BaseRepository from '../repository/BaseRepository';
         },
         async created(){
             this.repository = new BaseRepository(axios, "companies")
-            this.value = await this.repository.findById(this.value.id)
+            if (this.value && this.value.id !== undefined) {
+                this.value = await this.repository.findById(this.value.id)
+            }
         },
 
         methods: {

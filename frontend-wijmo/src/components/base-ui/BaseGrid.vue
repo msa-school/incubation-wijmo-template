@@ -23,7 +23,11 @@ export default {
         flex: null,
         tick : true,
         openDialog : false,
-        itemToEdit: null,
+        itemToEdit: {
+            productId: null,
+            quantity: null,
+            price: null
+        },
         selectedRow: null,
         path: 'path',
         repository: null,
@@ -36,14 +40,6 @@ export default {
         BaseEntity
     ],
     computed: {
-    },
-    watch: {
-        value: {
-            handler(newValue, oldValue) {
-                console.log('value changed from', oldValue, 'to', newValue);
-            },
-            deep: true
-        }
     },
     async created(){
         
@@ -65,9 +61,11 @@ export default {
             flexGrid.collectionView.sortDescriptions.push(sd);
         },
         onSelectionChanged(s) {
-            let selectedItem = s.collectionView.currentItem;
-            if (selectedItem) {
-                this.selectedRow = selectedItem;
+            if (s && s.collectionView) {
+                let selectedItem = s.collectionView.currentItem;
+                if (selectedItem) {
+                    this.selectedRow = selectedItem;
+                }
             }
         },
         addNewRow() {
@@ -87,6 +85,9 @@ export default {
                     this.openDialog = true;
                 });
             }
+        },
+        flexDetailsInitialized(flexGridDetails) {
+            this.$refs.flexGridDetails = flexGridDetails;
         },
         async deleteSelectedRows() {
             try {
@@ -152,15 +153,17 @@ export default {
             }
             return '';
         },
-
-        append(value){
+        append(){
             this.tick = false
             this.newValue = {}
-            this.value.push(value)
+            if(!this.value) {
+                this.value = []
+            }
+            this.value.push({ ...this.itemToEdit });
             this.$emit('input', this.value);
-            this.$nextTick(function(){
-                this.tick=true
-            })
+            this.$nextTick(function() {
+                this.tick = true;
+            });
         },
         remove(value){
             var where = -1;

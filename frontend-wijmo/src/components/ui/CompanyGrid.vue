@@ -33,7 +33,7 @@
             class="wj-felx-grid"
         >
             <wj-flex-grid-filter :filterColumns="['name','industry','foundedDate',]" />
-            <wj-flex-grid-column binding="index" header="Number" width="2*" :isReadOnly="true" align="center" />
+            <wj-flex-grid-cell-template cellType="RowHeader" v-slot="cell">{{cell.row.index + 1}}</wj-flex-grid-cell-template>
             <wj-flex-grid-column binding="name" header="name" width="2*" :isReadOnly="true" align="center" />
             <wj-flex-grid-column binding="industry" header="industry" width="2*" :isReadOnly="true" align="center" />
             <wj-flex-grid-column  binding="foundedDate" header="foundedDate" width="2*" :isReadOnly="true" align="center" />
