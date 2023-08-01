@@ -16,6 +16,7 @@
         <!-- the grid -->
         <wj-flex-grid
             ref="flexGrid"
+            :key="value.length"
             :autoGenerateColumns="false"
             :allowAddNew="false"
             :allowDelete="true"

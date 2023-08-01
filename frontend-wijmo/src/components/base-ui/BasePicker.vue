@@ -1,11 +1,11 @@
 <template>
     <div>
-        <v-text-field v-model="searchKeyword"></v-text-field>
+        <v-text-field label="입력하세요" v-model="searchKeyword"></v-text-field>
         <v-select
             :items="list"
             :item-text="nameField"
             :item-value="idField"
-            :label="label"
+            label="선택"
             return-object
             v-model="selected"
             @change="select"
@@ -55,22 +55,24 @@ import BaseRepository from '../../repository/BaseRepository';
             }
         },
         watch:{
-            "searchKeyword": _.debounce(
-                async function (newVal) {
-                    // edit Mode false -> true 일시 동기화.
-                    // 500ms 이유: 값 세팅이 300ms.
-                    if(newVal){
-                        var me = this;
+            "searchKeyword": {
+                handler: _.debounce(async function (newVal) {
+                    var me = this;
+                    var temp = null
+                    if (newVal) {
                         let query = {
-                            apiPath : me.searchApiPath, 
-                            parameters:{}
-                        }
-                        query.parameters[me.searchParameterName] = me.searchKeyword
-                        var temp = await this.repository.find(query)
-                        me.list = temp
+                            apiPath: me.searchApiPath,
+                            parameters: {}
+                        };
+                        query.parameters[me.searchParameterName] = me.searchKeyword;
+                        temp = await me.repository.find(query);
+                    } else {
+                        temp = await me.repository.find(null);
                     }
-                }, 500
-            ),
+                    me.list = temp;
+                }, 500),
+                immediate: true 
+            },
         },
         methods: {
             select(val) {

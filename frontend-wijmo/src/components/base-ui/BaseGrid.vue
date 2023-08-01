@@ -61,11 +61,6 @@ export default {
             if (selectedItem) {
                 this.selectedRow = selectedItem;
             }
-            this.$nextTick(() => {
-                if (this.$refs.flexGridDetails) {
-                    this.$refs.flexGridDetails.refresh();
-                }
-            });
         },
         addNewRow() {
             this.itemToEdit = null;
