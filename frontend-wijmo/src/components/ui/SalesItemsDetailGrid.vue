@@ -21,7 +21,8 @@
             <wj-flex-grid-column binding="price" header="price" width="2*" :isReadOnly="true" align="center" />
         </wj-flex-grid>
 
-        <SalesItem :offline="offline"
+        <SalesItem v-if="editMode"
+            :offline="offline"
             :isNew="!itemToEdit"
             :editMode="editMode"
             inList
@@ -30,7 +31,7 @@
         >
             <slot name="actions"></slot>
         </SalesItem>
-        <v-btn @click="append()">추가</v-btn>
+        <v-btn v-if="editMode" @click="append()">추가</v-btn>
         
     </div>
 </template>
