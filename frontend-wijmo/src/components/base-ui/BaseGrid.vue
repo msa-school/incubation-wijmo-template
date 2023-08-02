@@ -91,19 +91,28 @@ export default {
         },
         async deleteSelectedRows() {
             try {
-                
-                const flexGrid = this.$refs.flexGrid;
-                const view = flexGrid.collectionView;
-                
-                if (view.currentItem) {
-                    if (!this.offline) {
-                        await this.repository.delete(view.currentItem)
-                    }
+                if (!this.offline) {
+                    const flexGrid = this.$refs.flexGrid;
+                    const view = flexGrid.collectionView;
+                    const selectedIndex = view.currentPosition;
                     
-                    view.remove(view.currentItem);
-                    this.value = view.sourceCollection;
+                    if (view.currentItem) {
+                        await this.repository.delete(view.currentItem)
+                        
+                        view.remove(view.currentItem);
+
+                        this.value = view.sourceCollection;
+                        if (this.value.length > 0) {
+                            if (selectedIndex > 0) {
+                                this.selectedRow = this.value[Math.min(selectedIndex, this.value.length - 1)];
+                            } else {
+                                this.selectedRow = this.value[0];
+                            }
+                        } else {
+                            this.selectedRow = null;
+                        }
+                    }
                 }
-                
             } catch(e) {
                 this.snackbar.status = true
                 if(e.response && e.response.data.message) {
