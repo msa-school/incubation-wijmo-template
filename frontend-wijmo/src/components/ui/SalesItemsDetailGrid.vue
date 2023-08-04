@@ -32,7 +32,6 @@
             <slot name="actions"></slot>
         </SalesItem>
         <v-btn v-if="editMode" @click="append()">추가</v-btn>
-        
     </div>
 </template>
 

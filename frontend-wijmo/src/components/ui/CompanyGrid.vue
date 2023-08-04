@@ -46,32 +46,29 @@
                 class="add-edit-dialog"
             >
                 <template>
-                <v-card>
-                    <v-toolbar
-                        color="primary"
-                        class="elevation-0"
-                        height="50px"
-                    >
-                        <div style="color:white; font-size:17px; font-weight:700;">Company 등록</div>
-                        <v-spacer></v-spacer>
-                        <v-icon
-                            color="white"
-                            small
-                            @click="openDialog = false"
-                        >mdi-close</v-icon>
-                    </v-toolbar>
-                    <v-card-text>
-                        <Company :offline="offline"
-                            :isNew="!itemToEdit"
-                            :editMode="true"
-                            v-model="itemToEdit"
-                            @add="append"
-                        />
-                    </v-card-text>
-                    <v-card-actions class="justify-end">
-                    
-                    </v-card-actions>
-                </v-card>
+                    <v-card>
+                        <v-toolbar
+                            color="primary"
+                            class="elevation-0"
+                            height="50px"
+                        >
+                            <div style="color:white; font-size:17px; font-weight:700;">Company 등록</div>
+                            <v-spacer></v-spacer>
+                            <v-icon
+                                color="white"
+                                small
+                                @click="openDialog = false"
+                            >mdi-close</v-icon>
+                        </v-toolbar>
+                        <v-card-text>
+                            <Company :offline="offline"
+                                :isNew="!itemToEdit"
+                                :editMode="true"
+                                v-model="itemToEdit"
+                                @add="append"
+                            />
+                        </v-card-text>
+                    </v-card>
                 </template>
             </v-dialog>
         </v-col>

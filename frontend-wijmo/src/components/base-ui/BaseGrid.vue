@@ -23,11 +23,7 @@ export default {
         flex: null,
         tick : true,
         openDialog : false,
-        itemToEdit: {
-            productId: null,
-            quantity: null,
-            price: null
-        },
+        itemToEdit: {},
         selectedRow: null,
         path: 'path',
         repository: null,

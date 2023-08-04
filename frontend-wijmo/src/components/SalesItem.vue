@@ -29,7 +29,12 @@ export default {
     },
     
     data: () => ({
-        path: "salesOrders/salesItems"
+        path: "salesOrders/salesItems",
+        itemToEdit: {
+            productId: null,
+            quantity: null,
+            price: null
+        },
     }),
     created(){
     },
