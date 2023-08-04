@@ -74,9 +74,6 @@
                         @add="append"
                     />
                     </v-card-text>
-                    <v-card-actions class="justify-end">
-                    
-                    </v-card-actions>
                 </v-card>
                 </template>
             </v-dialog>

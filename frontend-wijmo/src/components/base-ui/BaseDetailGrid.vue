@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import BaseGrid from '../base-ui/BaseGrid';
+    import BaseGrid from './BaseGrid';
 
     export default {
         name: 'BaseDetailGrid',
